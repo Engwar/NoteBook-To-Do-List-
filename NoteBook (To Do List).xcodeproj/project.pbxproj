@@ -13,6 +13,7 @@
 		94363FFD21A871620058357B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94363FFB21A871620058357B /* LaunchScreen.storyboard */; };
 		9436400A21A874D10058357B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9436400921A874D10058357B /* TableViewController.swift */; };
 		9436401421A888D10058357B /* ToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9436401321A888D10058357B /* ToDo.swift */; };
+		9436401721ADBB8D0058357B /* ToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9436401621ADBB8D0058357B /* ToDoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		94363FFE21A871620058357B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9436400921A874D10058357B /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		9436401321A888D10058357B /* ToDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDo.swift; sourceTree = "<group>"; };
+		9436401621ADBB8D0058357B /* ToDoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				9436400921A874D10058357B /* TableViewController.swift */,
+				9436401621ADBB8D0058357B /* ToDoViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9436401721ADBB8D0058357B /* ToDoViewController.swift in Sources */,
 				9436401421A888D10058357B /* ToDo.swift in Sources */,
 				94363FF321A871600058357B /* AppDelegate.swift in Sources */,
 				9436400A21A874D10058357B /* TableViewController.swift in Sources */,
