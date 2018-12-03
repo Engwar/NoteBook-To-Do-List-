@@ -18,22 +18,48 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ToDoCell" textLabel="H7K-fw-s1f" style="IBUITableViewCellStyleDefault" id="I4C-Uc-ZcB">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ToDoCell" id="I4C-Uc-ZcB" customClass="ToDoCell" customModule="NoteBook__To_Do_List_" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="I4C-Uc-ZcB" id="V3D-Kq-nUA">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="H7K-fw-s1f">
-                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="njV-4E-As4">
+                                            <rect key="frame" x="8" y="8" width="27.5" height="27.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="njV-4E-As4" secondAttribute="height" multiplier="1:1" id="Qbf-KH-71i"/>
+                                            </constraints>
+                                            <state key="normal" image="uncheck"/>
+                                            <state key="selected" image="check"/>
+                                            <connections>
+                                                <action selector="completeButtonTapped" destination="I4C-Uc-ZcB" eventType="touchUpInside" id="yce-da-jMI"/>
+                                                <action selector="isCompleteButtontapped:" destination="IAt-z7-YiW" eventType="touchUpInside" id="B6U-J3-Nhd"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="88" translatesAutoresizingMaskIntoConstraints="NO" id="edK-5P-NaL">
+                                            <rect key="frame" x="43.5" y="11" width="307.5" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="edK-5P-NaL" firstAttribute="leading" secondItem="njV-4E-As4" secondAttribute="trailing" constant="8" id="EIJ-b4-xRW"/>
+                                        <constraint firstItem="njV-4E-As4" firstAttribute="leading" secondItem="V3D-Kq-nUA" secondAttribute="leading" constant="8" id="Eg4-oI-ekB"/>
+                                        <constraint firstItem="njV-4E-As4" firstAttribute="top" secondItem="V3D-Kq-nUA" secondAttribute="top" constant="8" id="IEq-zI-XNp"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="edK-5P-NaL" secondAttribute="bottom" id="OvO-1f-cjT"/>
+                                        <constraint firstAttribute="bottom" secondItem="njV-4E-As4" secondAttribute="bottom" constant="8" id="RkZ-Ng-yXV"/>
+                                        <constraint firstItem="edK-5P-NaL" firstAttribute="top" secondItem="V3D-Kq-nUA" secondAttribute="topMargin" id="il0-gW-DjE"/>
+                                        <constraint firstItem="njV-4E-As4" firstAttribute="width" secondItem="njV-4E-As4" secondAttribute="height" multiplier="1:1" id="t4k-3v-Sjq"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="edK-5P-NaL" secondAttribute="trailing" constant="8" id="x4x-yU-jLW"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="isCompleteButton" destination="njV-4E-As4" id="3iY-t2-Cnc"/>
+                                    <outlet property="titleLabel" destination="edK-5P-NaL" id="tkG-UX-0AA"/>
+                                    <segue destination="IAt-z7-YiW" kind="show" identifier="showDetails" id="9kQ-zr-eNW"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -71,11 +97,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Test" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0XB-cO-Ytc">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0XB-cO-Ytc">
                                                     <rect key="frame" x="59.5" y="6" width="307.5" height="32"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="returnPressed:" destination="IAt-z7-YiW" eventType="primaryActionTriggered" id="LqY-l0-7F8"/>
+                                                        <action selector="textEditingChanged:" destination="IAt-z7-YiW" eventType="editingChanged" id="gq8-8f-2Pa"/>
+                                                    </connections>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ARf-3G-jKF">
                                                     <rect key="frame" x="8" y="0.0" width="43.5" height="43.5"/>
@@ -84,6 +114,9 @@
                                                     </constraints>
                                                     <state key="normal" image="uncheck"/>
                                                     <state key="selected" image="check"/>
+                                                    <connections>
+                                                        <action selector="isCompleteButtontapped:" destination="IAt-z7-YiW" eventType="touchUpInside" id="NO6-2t-jSP"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -139,6 +172,9 @@
                                                     <date key="date" timeIntervalSinceReferenceDate="565032515.28001595">
                                                         <!--2018-11-27 17:28:35 +0000-->
                                                     </date>
+                                                    <connections>
+                                                        <action selector="datePickerChanged:" destination="IAt-z7-YiW" eventType="primaryActionTriggered" id="RdB-aS-2Nw"/>
+                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
@@ -191,10 +227,18 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="gJy-kt-lw5">
                             <connections>
-                                <segue destination="N9a-nL-YSD" kind="unwind" unwindAction="unwindSaveWithSaveSegue:" id="Ecv-DM-1iZ"/>
+                                <segue destination="N9a-nL-YSD" kind="unwind" identifier="saveUnwind" unwindAction="unwindSaveWithSaveSegue:" id="Ecv-DM-1iZ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="dueDataLabel" destination="DCW-yO-eXQ" id="Hc9-DX-LHi"/>
+                        <outlet property="dueDatePicker" destination="oE6-w4-l0Y" id="44L-xb-HSb"/>
+                        <outlet property="isCompleteButton" destination="ARf-3G-jKF" id="uI3-pA-zG1"/>
+                        <outlet property="notesTextField" destination="nA6-3K-xBU" id="udv-Ph-ynX"/>
+                        <outlet property="saveButton" destination="gJy-kt-lw5" id="K87-Ox-dtZ"/>
+                        <outlet property="titletextField" destination="0XB-cO-Ytc" id="Xua-hT-ApP"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aNK-vL-blg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="N9a-nL-YSD" userLabel="Exit" sceneMemberID="exit"/>
@@ -215,7 +259,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JaY-Ze-hk1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="898" y="-251"/>
+            <point key="canvasLocation" x="884" y="90"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UES-8B-Sj4">
@@ -238,4 +282,7 @@
         <image name="check" width="44" height="44"/>
         <image name="uncheck" width="44" height="44"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="2Fl-8d-h9p"/>
+    </inferredMetricsTieBreakers>
 </document>
