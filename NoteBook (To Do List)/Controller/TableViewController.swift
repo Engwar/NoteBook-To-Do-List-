@@ -18,7 +18,12 @@ class TableViewController: UITableViewController, ToDoCellDelegate {
     }
     
 
-    var todos = [ToDo]()
+    var todos = [ToDo]() {
+        didSet {
+            ToDo.saveTodos(todos)
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +64,7 @@ class TableViewController: UITableViewController, ToDoCellDelegate {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-        todos.remove(at: indexPath.row)
+            todos.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -124,6 +129,7 @@ class TableViewController: UITableViewController, ToDoCellDelegate {
             todos.append(todo)
             tableView.insertRows(at: [newIndexPath], with: .automatic)
         }
+        
     }
 }
 

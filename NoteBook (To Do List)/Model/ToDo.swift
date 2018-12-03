@@ -8,7 +8,11 @@
 
 import Foundation
 
-struct ToDo {
+struct ToDo: Codable { //все простые типы удовлетворяют протоколу Кодабл и в этом случае мы задать данный протокол к структуре для сохранения данных в plist
+    static let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    
+    static let archivURL = documentsDirectory.appendingPathComponent("todos").appendingPathExtension("plist")
+    
     var title: String
     var isComplete: Bool
     var dueDate: Date
@@ -22,7 +26,17 @@ struct ToDo {
     }()
     
     static func loadToDos() -> [ToDo]? {
-        return loadSampleToDos()
+        guard let codedToDo = try? Data(contentsOf: archivURL) else { return nil }
+        
+        let propertyListDecoder = PropertyListDecoder()
+        
+        guard let todos = try? propertyListDecoder.decode([ToDo].self, from: codedToDo) else { return nil }
+        return todos
+    }
+    static func saveTodos(_ todos: [ToDo]) {
+        let propertyListEncoder = PropertyListEncoder()
+        let codedToDos = try? propertyListEncoder.encode(todos)
+        try? codedToDos?.write(to: archivURL, options: .noFileProtection)
     }
     
     static func loadSampleToDos() -> [ToDo] {
